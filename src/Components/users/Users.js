@@ -6,29 +6,34 @@ import './User.css';
 
 class Users extends Component {
     state = {
-        users: []
+        users: [],
+        found: true
     }
     render(){
         return(
             <Fragment>
                 <Search searchUsers={this.searchUsers} />
-                {this.state.users.length > 0 ? 
+                { this.state.users.length > 0 && 
                 <div>
                     <h1>Search Results</h1>
                     <div className='grid'>
                         { this.state.users.map(u => { return ( <User key={u.id} user={u} /> ) })}
                     </div>
                 </div>
-                : null }
+                }
+                {!this.state.found && <h1>There are no results with this login name.</h1>}
            </Fragment>
         );
     }
 
     searchUsers = async (login) => {
         const res = await axios.get(`https://api.github.com/search/users?q=${login}`);
+        if(res.data.items.length === 0){
+            this.setState({found:false});
+        }
         //items will have sort, 
         //and pageable options along with data
-        this.setState({ users: res.data.items});
+        this.setState({ users: res.data.items, found: true});
     }
 
     // async componentDidMount(){
