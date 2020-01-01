@@ -1,0 +1,25 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 1rem;
+    justify-items: center;
+    margin: 10px auto;
+    width: 60%;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #ccc;
+    padding: 16px;
+}
+
+.form {
+    margin: 16px auto;
+    width: 60%;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #ccc;
+    padding: 16px;
+}
+
+.card {
+    margin: auto auto;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #ccc;
+}
