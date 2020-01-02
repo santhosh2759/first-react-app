@@ -11,7 +11,7 @@ class Users extends Component {
     }
     render(){
         return(
-            <Fragment>
+            <div>
                 <Search searchUsers={this.searchUsers} />
                 { this.state.users.length > 0 && 
                 <div>
@@ -22,7 +22,7 @@ class Users extends Component {
                 </div>
                 }
                 {!this.state.found && <h1>There are no results with this login name.</h1>}
-           </Fragment>
+           </div>
         );
     }
 

@@ -8,7 +8,7 @@ class Search extends Component {
     render(){
         return(
             <form onSubmit={this.onSubmit} className='form'>
-                <input type='text' name='login' value={this.state.login} onChange={this.onChange} placeholder='Search users...' />
+                <input type='text' name='login' value={this.state.login} onChange={this.onChange} placeholder='Search users...' required />
                 <input type='submit' value='Search' />
             </form>
         );
