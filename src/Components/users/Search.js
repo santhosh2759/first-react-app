@@ -1,30 +1,27 @@
-import React, { Component } from 'react';
+import React, { useState, useContext } from 'react';
+import GithubContext from '../../context/github/githubContext';
 import './User.css'
 
-class Search extends Component {
-    state = {
-        login:''
-    }
-    render(){
-        return(
-            <form onSubmit={this.onSubmit} className='form'>
-                <input type='text' name='login' value={this.state.login} onChange={this.onChange} placeholder='Search users...' required />
-                <input type='submit' value='Search' />
-            </form>
-        );
-    };
+const search = () => {
+    const [login, setLogin] = useState('');
+    const githubContext = useContext(GithubContext);
 
-    onSubmit = (event) => {
+    const onSubmit = (event) => {
         event.preventDefault();
-        this.props.searchUsers(this.state.login);
-        this.setState({login: ''});
+        githubContext.searchUsers(login);
+        setLogin('');
     }
     
-    onChange = (event) => {
-        this.setState({
-            [event.target.name] : event.target.value
-        });
+    const onChange = (event) => {
+        setLogin(event.target.value);
     }
+
+    return(
+        <form onSubmit={onSubmit} className='form'>
+            <input type='text' name='login' value={login} onChange={onChange} placeholder='Search users...' required />
+            <input type='submit' value='Search' />
+        </form>
+    );
 }
 
-export default Search;
+export default search;
